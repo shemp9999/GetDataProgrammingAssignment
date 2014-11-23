@@ -54,12 +54,10 @@
 if(!require('data.table')){
     install.packages('data.table')
     require('data.table')
-    print('`data.table` loaded...')
 }
 if(!require('dplyr')){
     install.packages('dplyr')
     require('dplyr')
-    print('`dplyr` loaded...')
 }
 
 print('run `analyze()` to execute script...')
