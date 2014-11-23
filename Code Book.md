@@ -1,4 +1,4 @@
-Code Book
+## Getting and Cleaning Data Class Project
 
 Features included in this dataset (getdata-project-ph.txt) are a subset of the features in the "Human Activity Recognition Using Smartphones dataset" provided for the assignment.
 
@@ -8,16 +8,14 @@ The data has been tidied and is in a wide format. There are 68 columns and 180 r
 
 The original UCI HAR Dataset components used were:
 
-activity_labels.txt - character value index (numbers,names) for activities (6,2)
-features.txt - character value index (numbers,names) for features (561,2)
-
-test/subject_test.txt - integers for subject index in test dataset (2947,1)
-test/X_test.txt - numeric - test observations for each feature (2947,561)
-test/y_test.txt - activity numbers for each test observation (2947,1)
-
-train/subject_train.txt - integer - subject index for each train observation (7352,1)
-train/X_train.txt - numeric - train observations for each feature (7352,561)
-train/y_train.txt - integer - activity numbers for each train observation (7352,1)
+- **activity_labels.txt** *character* Value index (numbers,names) for activities (6,2)
+- **features.txt** *character* Value index (numbers,names) for features (561,2)
+- **test/subject_test.txt** *integer* Subject index for each test observation (2947,1)
+- **test/X_test.txt** *numeric* Test observations for each feature (2947,561)
+- **test/y_test.txt** *integer* Activity numbers for each test observation (2947,1)
+- **train/subject_train.txt** *integer* Subject index for each training observation (7352,1)
+- **train/X_train.txt** *numeric* Training observations for each feature (7352,561)
+- **train/y_train.txt** *integer* Activity numbers for each training observation (7352,1)
 
 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
@@ -26,19 +24,18 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 
 
-Variables:
+### Variables
 
 There are two identification variables, Subject and Activity.
 
-Subject -  Integer (1:30). Represents 30 test subjects. 
-           Derived from training and test files.
-Activity - Character (WALKING, WALKING_UPSTAIRS, 
-           WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING). 
-           One of six activities recorded.
-           Each subject has observations for each activity.
-           The activity data in the original set was supplied as integers. 
-           Supplied activity table was merged with the complete dataset 
-           and then the integers were removed from results
+- **Subject** 
+    *integer* (1:30). Represents 30 test subjects. 
+    Derived from training and test files.
+- **Activity** *character* (WALKING, WALKING\_UPSTAIRS, WALKING\_DOWNSTAIRS, SITTING, STANDING, LAYING). 
+    One of six activities recorded.
+    Each subject has observations for each activity.
+    The activity data in the original set was supplied as integers. 
+    Supplied activity table was merged with the complete dataset and then the integers were removed from results.
 
 
 There are an additional 66 variables for mean and standard deviation observed features of the accelerometer data (described below). 
