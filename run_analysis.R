@@ -163,7 +163,7 @@ analyze <- function(rd=1){
     a_tidy      <- arrange(a_grouped,Subject,Activity)
     
     # Set output file and write to disk
-    output_file <- './getdata-project-ph3.txt'
+    output_file <- './getdata-project-ph.txt'
     write.table(a_tidy,output_file, row.name=F)
     
     # return tidy data (of the wide variety)
