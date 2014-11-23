@@ -48,12 +48,28 @@
 #       fBodyBodyAccJerkMag.std..,fBodyBodyGyroMag.std..,fBodyBodyGyroJerkMag.std..
 
 
-### !!! do we need a require here? if so, do we need library as well?
-library(data.table)
+# We require two packages. If not available, they will be downloaded
+# and added to the library when this file is sourced
+
+if(!require('data.table')){
+    install.packages('data.table')
+    require('data.table')
+    print('`data.table` loaded...')
+}
+if(!require('dplyr')){
+    install.packages('dplyr')
+    require('dplyr')
+    print('`dplyr` loaded...')
+}
+
+print('run `analyze()` to execute script...')
+
+
+
 
 read_files <- function(){
     # variables are set globally (<<-) to allow subsequent analysis
-    # without re-reading files (Useful in development/testing).
+    # without re-reading files (speeds up development/testing).
     
     # to read files: run combine() or analyze() as needed
     # to skip reading files: run combine(0) or analyze(0)
@@ -149,7 +165,7 @@ analyze <- function(rd=1){
     a_tidy      <- arrange(a_grouped,Subject,Activity)
     
     # Set output file and write to disk
-    output_file <- './getdata-project-ph.txt'
+    output_file <- './getdata-project-ph3.txt'
     write.table(a_tidy,output_file, row.name=F)
     
     # return tidy data (of the wide variety)
