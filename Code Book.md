@@ -17,11 +17,7 @@ The original UCI HAR Dataset components used were:
 - **train/X_train.txt** *numeric* Training observations for each feature (7352,561)
 - **train/y_train.txt** *integer* Activity numbers for each training observation (7352,1)
 
-
-http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
-https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-
-
+(*Inertial Signals raw data was ingored as it was not relavent to the current task*)
 
 
 #### Variables
@@ -39,6 +35,14 @@ There are two identification variables, Subject and Activity.
 
 
 There are an additional 66 **feature** variables for mean and standard deviation observed features of the accelerometer data (*described below*). 
+
+#### Transformations
+
+The output of analyze() in the run_analysis.R script is a table containing rows of subjects, activities and the applied mean for each selected feature in that subject/activity pair. 
+
+- **Subjects** were read in as integers and were not modified.
+- **Activities** were read in as integers and merged with provided index after other data was bound
+- **features** were grouped and averaged. IE: All rows containing `Subject 1, Activity: 'WALKING'` are grouped and each feature is averaged to creat a row for that subject/activity pair. The feature variable names were slighly changed when applied as column names in the data tables (*illegal characters were replaced with '.' *`tBodyAcc-mean()-X` to `tBodyAcc.mean...X`*)
 
 
 **Feature Selection:**
@@ -72,13 +76,14 @@ fBodyAccJerkMag
 fBodyGyroMag
 fBodyGyroJerkMag
 
-The set of variables that were estimated from these signals and included in this dataset are: 
+The subset of variables that were estimated from each of these signals and included in this dataset are those containing: 
 
 mean(): Mean value
 std(): Standard deviation
 
+(*all other values, including meanFreq() are ignored and set aside*)
 
-Complete list of variables of each feature vector:
+Complete list of included variables of each feature vector:
 
    tBodyAcc.mean...X,tBodyAcc.mean...Y,tBodyAcc.mean...Z,
    tGravityAcc.mean...X,tGravityAcc.mean...Y,tGravityAcc.mean...Z,
@@ -103,25 +108,17 @@ Complete list of variables of each feature vector:
    fBodyGyro.std...Y,fBodyGyro.std...Z,fBodyAccMag.std..,
    fBodyBodyAccJerkMag.std..,fBodyBodyGyroMag.std..,fBodyBodyGyroJerkMag.std..
 
-#### Transformations
-
-The output of analyze() in the run_analysis.R script is a table containing rows of subjects, activities and the applied mean for each selected feature in that subject/activity pair. 
-
-- **Subjects** were read in as integers and were not modified.
-- **Activities** were read in as integers and merged with provided index after other data was bound
-- **Feature variables** were grouped and averaged. IE: All rows containing `Subject 1, Activity: 'WALKING'` are grouped and each feature is averaged to creat a row for that subject/activity pair. 
    
 
 #### Notes on the dataset
 (*this section is snipped from the original provided with the UCI HAR dataset*)
-
 
 The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING\_UPSTAIRS, WALKING\_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
 
 **For each record it is provided:**
----
+
 - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
 - A 561-feature vector with time and frequency domain variables. 
@@ -130,6 +127,6 @@ The sensor signals (accelerometer and gyroscope) were pre-processed by applying 
 
 
 **Notes:**
----
+
 - Features are normalized and bounded within [-1,1].
 - Each feature vector is a row on the text file.
